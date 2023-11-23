@@ -1,0 +1,66 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Application
+        run: npm run build
+
+  deploy_dev:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to Dev
+        uses: docker/build-push-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: your-docker-repo/dev-image
+          tag_with_ref: true
+
+  deploy_qa:
+    runs-on: ubuntu-latest
+    needs: deploy_dev
+    if: github.ref == 'refs/heads/qa' && success()
+
+    steps:
+      - name: Deploy to QA
+        uses: docker/build-push-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: your-docker-repo/qa-image
+          tag_with_ref: true
+
+  deploy_main:
+    runs-on: ubuntu-latest
+    needs: deploy_qa
+    if: github.ref == 'refs/heads/main' && success()
+
+    steps:
+      - name: Deploy to Main
+        uses: docker/build-push-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: your-docker-repo/main-image
+          tag_with_ref: true
