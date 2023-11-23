@@ -1,5 +1,14 @@
 import React from "react";
 
-export default function Header() {
-  return <h1>Header</h1>;
+function Header() {
+  return (
+    <header>
+      <div className="container">
+        <h1>Daniel Hernández</h1>
+        <p>Desarrollador Full Stack</p>
+      </div>
+    </header>
+  );
 }
+
+export default Header;

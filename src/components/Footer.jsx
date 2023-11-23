@@ -1,5 +1,13 @@
 import React from "react";
 
-export default function Footer() {
-  return <h1>Footer</h1>;
+function Footer() {
+  return (
+    <footer>
+      <div className="container">
+        <p>© 2023 Daniel Hernández | Desarrollador Full Stack</p>
+      </div>
+    </footer>
+  );
 }
+
+export default Footer;
