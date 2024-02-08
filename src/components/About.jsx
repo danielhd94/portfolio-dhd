@@ -31,19 +31,21 @@ function About() {
             <div className="flex flex-col lg:flex-row justify-center mt-8">
               <a
                 href="#contact"
-                className={`bg-secondary text-textLight font-medium rounded-full text-sm px-6 py-3 hover:bg-accent ${
-                  isDarkMode ? "hover:bg-secondary" : "hover:bg-accentHover"
-                } lg:mr-4 mb-4 lg:mb-0`}
+                className={`bg-secondary text-textLight font-medium rounded-full text-sm px-6 py-3 lg:mr-4 mb-4 lg:mb-0 ${
+                  isDarkMode
+                    ? "hover:bg-secondary hover:text-textLight"
+                    : "hover:bg-accent hover:text-textLight"
+                }`}
               >
                 Contactar
               </a>
               <a
                 href="#projects"
-                className={`text-textDark border border-border rounded-full text-sm px-6 py-3 ${
+                className={`border border-border rounded-full text-sm px-6 py-3 lg:ml-4 ${
                   isDarkMode
                     ? "hover:bg-backgroundDark hover:text-textLight"
                     : "hover:bg-backgroundLight hover:text-textDark"
-                } lg:ml-4`}
+                }`}
               >
                 Proyectos
               </a>
