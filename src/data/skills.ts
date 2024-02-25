@@ -11,13 +11,13 @@ interface SkillsData {
 
 export const skills: SkillsData = {
   advanced: [
-        { name: "Java", rating: 5
+        { name: "Java", rating: 4
         },
         { name: "Spring Boot", rating: 5
         },
-        { name: ".NET Core", rating: 5
+        { name: ".NET Core", rating: 3
         },
-        { name: "JavaScript", rating: 5
+        { name: "JavaScript", rating: 4
         }
     ],
   intermediate: [
